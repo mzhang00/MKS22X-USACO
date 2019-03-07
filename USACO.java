@@ -6,6 +6,7 @@ public class USACO{
   private static int C;
   private static int E;
   private static int N;
+  private static int[][] board;
   public static int bronze(String filename) throws FileNotFoundException{
     int depth = 0;
     File text = new File(filename);
@@ -17,7 +18,7 @@ public class USACO{
     E = Integer.parseInt(values[2]);
     N = Integer.parseInt(values[3]);
     int[][] moves = new int[N][3];
-    int[][] board = new int[R][C];
+    board = new int[R][C];
     for (int i = 0; i < R; i++){
       line = inf.nextLine();
       values = line.split(" ", -2);
@@ -40,16 +41,16 @@ public class USACO{
       int max = 0;
       for (int r = row; r <= row + 2; r++){
         for (int c = col; c <= col + 2; c++){
-          if (board[r][c] > max){
-            max = board[r][c];
+          if (board[r - 1][c - 1] > max){
+            max = board[r - 1][c - 1];
           }
         }
       }
       max = max - moves[i][2];
       for (int r = row; r <= row + 2; r++){
         for (int c = col; c <= col + 2; c++){
-          if (board[r][c] > max){
-            //max = board[r][c];
+          if (board[r - 1][c - 1] > max){
+            board[r - 1][c - 1] = max;
           }
         }
       }
@@ -59,12 +60,13 @@ public class USACO{
   public static void main(String[] args){
     try{
       bronze("makelake.in");
-      //for (int[] i : moves){
-      //  for (int c : i){
-      //    System.out.println("" + c);
-      //  }
-      //}
-      //System.out.println("" + R + " " + C + " " + E  + " " + N);
+      for (int[] i : board){
+        for (int c : i){
+          System.out.print("" + c);
+        }
+        System.out.println();
+      }
+      System.out.println("" + R + " " + C + " " + E  + " " + N);
     }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
