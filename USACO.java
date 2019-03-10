@@ -55,18 +55,29 @@ public class USACO{
         }
       }
     }
+    for (int i = 0; i < board.length; i++){
+      for (int c = 0; c < board[0].length; c++){
+        int newval = E - board[i][c];
+        if (newval > 0){
+          board[i][c] = newval;
+        }else{
+          board[i][c] = 0;
+        }
+        depth += board[i][c];
+      }
+    }
     return 72 * 72 * depth;
   }
   public static void main(String[] args){
     try{
-      bronze("makelake.in");
+      System.out.println(bronze("makelake.in"));
       for (int[] i : board){
         for (int c : i){
-          System.out.print("" + c);
+          System.out.print("" + c + " ");
         }
         System.out.println();
       }
-      System.out.println("" + R + " " + C + " " + E  + " " + N);
+      //System.out.println("" + R + " " + C + " " + E  + " " + N);
     }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
