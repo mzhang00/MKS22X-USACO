@@ -105,7 +105,7 @@ public class USACO{
         if (data[r][c].equals(".")){
           newboard[r][c] = 0; 
         }else{
-          newboard[r][c] = -100;
+          newboard[r][c] = -9999999;
         }
       }
     }
@@ -149,11 +149,11 @@ public class USACO{
 
   public static void main(String[] args){
     try{
-      System.out.println(silver("testCases/ctravel.1.in"));
-      /*for (int i = 1; i <= 1; i++){
+      
+      for (int i = 1; i <= 5; i++){
         System.out.println(silver("testCases/ctravel." + i + ".in"));
-        System.out.println("" + N2 + " " + M + " " + T);
-      }*/
+        //System.out.println("" + N2 + " " + M + " " + T);
+      }
       //System.out.println("" + R1 + " " + C1 + " " + R2 + " " + C2);
       
       /*
@@ -166,7 +166,7 @@ public class USACO{
       }
 
       */
-      
+
     }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
