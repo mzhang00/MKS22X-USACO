@@ -10,6 +10,11 @@ public class USACO{
   private static int M;
   private static int T;
   private static String[][] data;
+  private static int[][] newboard;
+  private static int R1;
+  private static int R2;
+  private static int C1;
+  private static int C2;
 
   public static int bronze(String filename) throws FileNotFoundException{
     int depth = 0;
@@ -88,23 +93,80 @@ public class USACO{
         data[i][c] = line.substring(c, c + 1);
       }
     }
-    return 0;
+    line = inf.nextLine();
+    values = line.split(" ", -2);
+    R1 = Integer.parseInt(values[0]) - 1;
+    C1 = Integer.parseInt(values[1]) - 1;
+    R2 = Integer.parseInt(values[2]) - 1;
+    C2 = Integer.parseInt(values[3]) - 1;
+    newboard = new int[data.length][data[0].length];
+    for (int r = 0; r < newboard.length; r++){
+      for (int c = 0; c < newboard[0].length; c++){
+        if (data[r][c].equals(".")){
+          newboard[r][c] = 0; 
+        }else{
+          newboard[r][c] = -100;
+        }
+      }
+    }
+    newboard[R1][C1] = 1;
+    ArrayList<Integer> coords;
+    int[][] moves = {
+      {0,1},
+      {0,-1},
+      {1,0},
+      {-1,0}
+    };
+    while(T > 0){
+      coords = new ArrayList<>();
+      for(int r = 0; r < data.length; r++){
+        for (int c = 0; c < data[0].length; c++){
+          if (newboard[r][c] > 0){
+            coords.add(r);
+            coords.add(c);
+          }
+        }
+      }
+      for (int a = 0; a < coords.size(); a += 2){
+        for (int b = 0; b < moves.length; b++){
+          if (inbounds(coords.get(a) + moves[b][0], coords.get(a+1) + moves[b][1], newboard)){
+            newboard[coords.get(a) + moves[b][0]][coords.get(a+1) + moves[b][1]] += newboard[coords.get(a)][coords.get(a+1)];
+          }
+        }
+        newboard[coords.get(a)][coords.get(a+1)] = 0;
+      }
+      T--;
+    }
+    return newboard[R2][C2];
+  }
+
+  private static boolean inbounds(int x, int y, int[][] board){
+    if (x < 0 || y < 0 || x >= board.length || y >= board[0].length){
+      return false;
+    }
+    return true;
   }
 
   public static void main(String[] args){
     try{
-      silver("testCases/ctravel.1.in");
+      System.out.println(silver("testCases/ctravel.1.in"));
       /*for (int i = 1; i <= 1; i++){
         System.out.println(silver("testCases/ctravel." + i + ".in"));
         System.out.println("" + N2 + " " + M + " " + T);
       }*/
-      System.out.println("" + N2 + " " + M);
-      for (String[] i : data){
-        for (String c : i){
-          System.out.print(c);
+      //System.out.println("" + R1 + " " + C1 + " " + R2 + " " + C2);
+      
+      /*
+
+      for (int[] i : newboard){
+        for (int c : i){
+          System.out.print("" + c + " ");
         }
         System.out.println();
       }
+
+      */
+      
     }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
