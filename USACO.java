@@ -105,7 +105,7 @@ public class USACO{
         if (data[r][c].equals(".")){
           newboard[r][c] = 0; 
         }else{
-          newboard[r][c] = -9999999;
+          newboard[r][c] = -99999999;
         }
       }
     }
@@ -150,10 +150,10 @@ public class USACO{
   public static void main(String[] args){
     try{
       
-      for (int i = 1; i <= 5; i++){
-        System.out.println(silver("testCases/ctravel." + i + ".in"));
+      //for (int i = 1; i <= 5; i++){
+        //System.out.println(silver("testCases/ctravel." + i + ".in"));
         //System.out.println("" + N2 + " " + M + " " + T);
-      }
+      //}
       //System.out.println("" + R1 + " " + C1 + " " + R2 + " " + C2);
       
       /*
