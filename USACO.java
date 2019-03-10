@@ -70,15 +70,17 @@ public class USACO{
   }
   public static void main(String[] args){
     try{
-      System.out.println(bronze("makelake.in"));
-      for (int[] i : board){
+      for (int i = 1; i <= 5; i++){
+        System.out.println(bronze("testCases/makelake." + i + ".in"));
+      }      
+    /*  for (int[] i : board){
         for (int c : i){
           System.out.print("" + c + " ");
         }
         System.out.println();
       }
       //System.out.println("" + R + " " + C + " " + E  + " " + N);
-    }
+    */}
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
     }
