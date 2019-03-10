@@ -6,7 +6,11 @@ public class USACO{
   private static int C;
   private static int E;
   private static int N;
-  private static int[][] board;
+  private static int N2;
+  private static int M;
+  private static int T;
+  private static String[][] data;
+
   public static int bronze(String filename) throws FileNotFoundException{
     int depth = 0;
     File text = new File(filename);
@@ -18,7 +22,7 @@ public class USACO{
     E = Integer.parseInt(values[2]);
     N = Integer.parseInt(values[3]);
     int[][] moves = new int[N][3];
-    board = new int[R][C];
+    int[][] board = new int[R][C];
     for (int i = 0; i < R; i++){
       line = inf.nextLine();
       values = line.split(" ", -2);
@@ -68,19 +72,40 @@ public class USACO{
     }
     return 72 * 72 * depth;
   }
+  
+  public static int silver(String filename) throws FileNotFoundException{
+    File text = new File(filename);
+    Scanner inf = new Scanner(text);
+    String line = inf.nextLine();
+    String[] values = line.split(" ", -2);
+    N2 = Integer.parseInt(values[0]);
+    M = Integer.parseInt(values[1]);
+    T = Integer.parseInt(values[2]);
+    data = new String[N2][M];
+    for (int i = 0; i < N2; i++){
+      line = inf.nextLine();
+      for (int c = 0; c < line.length(); c++){
+        data[i][c] = line.substring(c, c + 1);
+      }
+    }
+    return 0;
+  }
+
   public static void main(String[] args){
     try{
-      for (int i = 1; i <= 5; i++){
-        System.out.println(bronze("testCases/makelake." + i + ".in"));
-      }      
-    /*  for (int[] i : board){
-        for (int c : i){
-          System.out.print("" + c + " ");
+      silver("testCases/ctravel.1.in");
+      /*for (int i = 1; i <= 1; i++){
+        System.out.println(silver("testCases/ctravel." + i + ".in"));
+        System.out.println("" + N2 + " " + M + " " + T);
+      }*/
+      System.out.println("" + N2 + " " + M);
+      for (String[] i : data){
+        for (String c : i){
+          System.out.print(c);
         }
         System.out.println();
       }
-      //System.out.println("" + R + " " + C + " " + E  + " " + N);
-    */}
+    }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
     }
