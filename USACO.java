@@ -148,6 +148,7 @@ public class USACO{
   }
 
   public static void main(String[] args){
+    /*
     try{
       
       //for (int i = 1; i <= 5; i++){
@@ -166,10 +167,10 @@ public class USACO{
       }
 
       */
-
+/*
     }
     catch(FileNotFoundException e){
       System.out.println("file not found :(");
-    }
+    }*/
   }
 }
